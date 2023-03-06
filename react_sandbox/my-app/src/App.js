@@ -1,6 +1,7 @@
 import React from 'react';
 import {Box, Container, Tabs, Tab, Typography} from '@mui/material';
 import HomeContent from './HomeContent';
+import ElementContent from './ElementContent';
 
 function App() {
   const [tab, setTab] = React.useState(0);
@@ -21,6 +22,7 @@ function App() {
       <Container maxWidth='lg' sx={{marginY: 5}}>
         <Typography>{`Tab ${tab} selected`}</Typography>
         <HomeContent hidden={tab !== 0}/>
+        <ElementContent hidden={tab !== 2}/>
         <Box hidden={tab !== 1}>Something</Box>
       </Container>
     </Container> 
