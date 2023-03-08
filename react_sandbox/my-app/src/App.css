@@ -1,0 +1,13 @@
+.sliderimg{
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    opacity: 0.5;
+}
+.homeGrid{
+}
+.carousel,
+.welcomeCard{
+    grid-row: 1;
+    grid-column: 1;
+}

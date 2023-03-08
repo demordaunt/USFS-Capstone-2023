@@ -1,5 +1,11 @@
 import { Box, Grid, Typography, Card, CardActions, CardContent, Button, Paper, Stack, Divider } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import AliceCarousel from 'react-alice-carousel';
+import "react-alice-carousel/lib/alice-carousel.css";
+import imageOne from './images/Sticta_limbata.png';
+import imageTwo from './images/Usena_sphacelata.png';
+import axios from 'axios';
+
 
 
 const body1 = 'Welcome to the web pages of the USDA Forest Service National Lichens and Air Quality Database and Clearinghouse. Across the US, lichen biomonitoring is helping federal land managers meet federal and agency responsibilities to detect, map, evaluate trends, and assess the ecological impacts of air pollutants. On these pages you can access lichen data from the National Forest system and the Forest Inventory and Analysis Programs and find out more about lichens and lichen monitoring in general.';
@@ -29,11 +35,15 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function HomeContent({hidden}) {
     return (
-        <Box>
-            <Card sx={{ minWidth: 275 }}>
+        <Grid hidden={hidden} className="homeGrid">
+            <AliceCarousel autoPlay autoPlayInterval="3000" className='carousel'>
+                <img src={imageOne} className="sliderimg"/>
+                <img src={imageTwo} className="sliderimg"/>
+            </AliceCarousel>
+            <Card sx={{ minWidth: 275 }} className='welcomeCard'>
                 <CardContent>
                     <Typography sx={{ fontSize: 34 }} color="text.secondary" gutterBottom>
-                    Welcome
+                        Welcome
                     </Typography>
                     <Typography variant="h5" component="div">
                     {body1}
@@ -56,10 +66,12 @@ export default function HomeContent({hidden}) {
                     direction="row"
                     divider={<Divider orientation="vertical" flexItem />}
                     spacing={2}
+                    style={{marginTop: '50px', justifyContent: 'space-around', }}
                 >
+
                     <Card>
                         <CardContent>
-                            Lorem Ipsum
+                            Test
                         </CardContent>
                     </Card>
                     <Card>
@@ -74,7 +86,7 @@ export default function HomeContent({hidden}) {
                     </Card>
                 </Stack>
             </Box>
-        </Box>
+        </Grid>
         
 
         // <Box hidden={hidden}>
