@@ -9,7 +9,6 @@ function App() {
   const [tab, setTab] = React.useState(0);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  // const tabs = ['Home', 'Database Queries', 'Element Analysis Thresholds & Sensitivity Ratings', 'About Us'].map((t) => <Tab label={t}/>);
 
   const handleChange = (event, newValue) => {
     setTab(newValue);
