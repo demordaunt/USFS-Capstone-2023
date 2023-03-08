@@ -1,0 +1,4 @@
+### ignores files and doesn't push to main. 
+
+##package files that are added when npm is installed 
+*/mode_modules/*
