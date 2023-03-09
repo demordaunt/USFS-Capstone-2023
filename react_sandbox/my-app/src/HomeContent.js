@@ -4,6 +4,8 @@ import AliceCarousel from 'react-alice-carousel';
 import "react-alice-carousel/lib/alice-carousel.css";
 import imageOne from './images/Sticta_limbata.png';
 import imageTwo from './images/Usena_sphacelata.png';
+import lichenland from './images/lichenland.png';
+import lichenpublications from './images/lichenpublications.jpeg'
 import axios from 'axios';
 
 
@@ -71,17 +73,22 @@ export default function HomeContent({hidden}) {
 
                     <Card>
                         <CardContent>
-                            Test
+                            <h4><b>Reports and Publications</h4></b>
+                            <img src=lichenpublications style="width:5cm">
                         </CardContent>
                     </Card>
                     <Card>
                         <CardContent>
-                            Lorem Ipsum
+                            <h4><b>Analysis Tools</h4></b>
+                            <p>to visualize air quality and lichen trends</p>
+                            <img src=lichenpublications style="width:5cm"> // incorrect image 
                         </CardContent>
                     </Card>
                     <Card>
                         <CardContent>
-                            Lorem Ipsum
+                            <h4><b>Resrources</h4></b>
+                            <p>for more lichen fun!</p>  
+                            <img src=lichenland style="width:5cm">
                         </CardContent>
                     </Card>
                 </Stack>
