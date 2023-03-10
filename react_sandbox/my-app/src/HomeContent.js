@@ -98,7 +98,7 @@ export default function HomeContent({hidden}) {
                     style={{marginTop: '50px', justifyContent: 'space-around', }}
                 >
 
-                    <Card style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignContent: 'center', }}>
+                    <Card style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignContent: 'center'}}>
                         <CardContent>
                             <Typography sx={{fontWeight: 'bold'}} textAlign='center'>Reports and Publications</Typography>
                             <img src={lichenpublications} style={{width: '7cm'}} />
@@ -119,7 +119,7 @@ export default function HomeContent({hidden}) {
                     <Card style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
                         <CardContent>
                             <Typography sx={{fontWeight: 'bold'}} textAlign='center'>Analysis Tools</Typography>
-                            <p>to visualize air quality and lichen trends</p>
+                            <Typography textAlign='center'>to visualize air quality and lichen trends</Typography>
                             <img src={analysisTool} style={{width: '7cm'}} /> {/* Change image here */}
                         </CardContent>
                         <CardActions style={{alignContent: 'end', justifyContent: 'center'}}>
@@ -137,7 +137,7 @@ export default function HomeContent({hidden}) {
                     <Card style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
                         <CardContent sx={{alignContent: 'center', justifyContent: 'center'}}>
                             <Typography sx={{fontWeight: 'bold'}} textAlign='center'>Resources</Typography>
-                            <p>for more lichen fun!</p>  
+                            <Typography textAlign='center'>for more lichen fun!</Typography>  
                             <img src={lichenland} style={{width: '7cm'}} />
                         </CardContent>
                         <CardActions style={{alignContent: 'end', justifyContent: 'center'}}>
