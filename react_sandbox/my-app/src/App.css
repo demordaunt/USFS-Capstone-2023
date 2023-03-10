@@ -5,9 +5,10 @@
     opacity: 0.5;
 }
 .homeGrid{
-    /* text-align: 'center';
-    height: 100vh;
-    background-color: #333; */
+    text-align: 'center';
+    height: '100%';
+    width:1200px;
+    
     /* Going to have to change the styling here because it looks funky */
 }
 .carousel,

@@ -19,6 +19,7 @@ import image2 from './images/pic-2.jpg';
 import image3 from './images/pic-3.jpg';
 import image4 from './images/Sticta_limbata.png';
 import image5 from './images/Usena_sphacelata.png';
+//TODO: Make all of the images the same size and format 
 
 
 
@@ -37,6 +38,7 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function HomeContent({hidden}) {
     return (
         <Grid hidden={hidden} className="homeGrid">
+            <Box style={{marginTop: '-40px', width: '200vh', marginLeft: '-179px'}}>
             <GlobalStyles />
                 <div>
                     <ImageSlider images={[image1, image2, image3, image4, image5]}>
@@ -62,6 +64,7 @@ export default function HomeContent({hidden}) {
                     </div>
                     </ImageSlider>
                 </div>
+                </Box>
             {/* <AliceCarousel autoPlay autoPlayInterval="3000" className='carousel'>
                 <img src={imageOne} className="sliderimg"/>
                 <img src={imageTwo} className="sliderimg"/>
@@ -95,7 +98,7 @@ export default function HomeContent({hidden}) {
                     style={{marginTop: '50px', justifyContent: 'space-around', }}
                 >
 
-                    <Card style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignContent: 'center'}}>
+                    <Card style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignContent: 'center', }}>
                         <CardContent>
                             <Typography sx={{fontWeight: 'bold'}} textAlign='center'>Reports and Publications</Typography>
                             <img src={lichenpublications} style={{width: '7cm'}} />
