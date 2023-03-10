@@ -71,7 +71,7 @@ const Gradient = styled.div`
 const ImageSlider = ({
   images = [],
   autoPlay = true,
-  autoPlayTime = 6000,
+  autoPlayTime = 5000, //Change the frequency of how often the images will automatically slide
   children,
   ...props
 }) => {

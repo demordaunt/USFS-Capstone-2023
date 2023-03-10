@@ -4,8 +4,8 @@ import AliceCarousel from 'react-alice-carousel';
 import "react-alice-carousel/lib/alice-carousel.css";
 import imageOne from './images/Sticta_limbata.png';
 import imageTwo from './images/Usena_sphacelata.png';
-import lichenland from './images/lichenland.png';
-import lichenpublications from './images/lichenpublications.png';
+import lichenland from './images/lichenland-removedbg.png';
+import lichenpublications from './images/lichenpublications-removedbg.png';
 import analysisTool from './images/analysisTool.png';
 import './App';
 
@@ -37,9 +37,9 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function HomeContent({hidden}) {
     return (
-        <Grid hidden={hidden} className="homeGrid">
+        <Grid hidden={hidden} className="homeGrid" sx={{widows: '100%'}}>
             {/* Thisi is where the image slider is styled to fit screen */}
-            <Box style={{marginTop: '-40px', width: '200vh', marginLeft: '-179px'}}> 
+            <Box style={{marginTop: '-40px', width: '126%', marginLeft: '-179px'}}> 
             <GlobalStyles />
                 <div>
                     <ImageSlider images={[image1, image2, image3, image4, image5]}>
@@ -99,10 +99,10 @@ export default function HomeContent({hidden}) {
                     style={{marginTop: '50px', justifyContent: 'space-around', }}
                 >
 
-                    <Card style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignContent: 'center'}}>
+                    <Card style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignContent: 'center', backgroundColor: '#fae363'}}>
                         <CardContent>
                             <Typography sx={{fontWeight: 'bold'}} textAlign='center'>Reports and Publications</Typography>
-                            <img src={lichenpublications} style={{width: '7cm'}} />
+                            <img src={lichenpublications} style={{width: '7cm', marginTop:'20px'}} />
                         </CardContent>
                         <CardActions style={{alignContent: 'center', justifyContent: 'center'}}>
                             <Button 
@@ -117,11 +117,11 @@ export default function HomeContent({hidden}) {
                             </Button>
                         </CardActions   >
                     </Card>
-                    <Card style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
+                    <Card style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', backgroundColor: '#fae363'}}>
                         <CardContent>
                             <Typography sx={{fontWeight: 'bold'}} textAlign='center'>Analysis Tools</Typography>
                             <Typography textAlign='center'>to visualize air quality and lichen trends</Typography>
-                            <img src={analysisTool} style={{width: '7cm'}} /> {/* Change image here */}
+                            <img src={analysisTool} style={{width: '7cm', marginLeft: '11px'}}/> {/* Change image here */}
                         </CardContent>
                         <CardActions style={{alignContent: 'end', justifyContent: 'center'}}>
                             <Button 
@@ -135,11 +135,11 @@ export default function HomeContent({hidden}) {
                             </Button>
                         </CardActions>
                     </Card>
-                    <Card style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
+                    <Card style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', backgroundColor: '#fae363'}}>
                         <CardContent sx={{alignContent: 'center', justifyContent: 'center'}}>
                             <Typography sx={{fontWeight: 'bold'}} textAlign='center'>Resources</Typography>
                             <Typography textAlign='center'>for more lichen fun!</Typography>  
-                            <img src={lichenland} style={{width: '7cm'}} />
+                            <img src={lichenland} style={{width: '7cm', marginTop:'20px'}} />
                         </CardContent>
                         <CardActions style={{alignContent: 'end', justifyContent: 'center'}}>
                             <Button 
