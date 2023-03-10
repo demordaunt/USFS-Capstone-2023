@@ -66,8 +66,8 @@ function App() {
             <Stack
             direction='column'
             >
-              <Typography variant='h4'>United States Forest Service</Typography>
-              <Typography variant='h6'>National Lichens & Air Quality Database and Clearinghouse</Typography>
+              <Typography variant='h4' fontFamily='monospace'>United States Forest Service</Typography>
+              <Typography variant='h6' >National Lichens & Air Quality Database and Clearinghouse</Typography>
             </Stack>
           
         </Stack>

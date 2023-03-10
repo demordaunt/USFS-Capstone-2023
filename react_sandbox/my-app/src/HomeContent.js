@@ -38,7 +38,8 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function HomeContent({hidden}) {
     return (
         <Grid hidden={hidden} className="homeGrid">
-            <Box style={{marginTop: '-40px', width: '200vh', marginLeft: '-179px'}}>
+            {/* Thisi is where the image slider is styled to fit screen */}
+            <Box style={{marginTop: '-40px', width: '200vh', marginLeft: '-179px'}}> 
             <GlobalStyles />
                 <div>
                     <ImageSlider images={[image1, image2, image3, image4, image5]}>
