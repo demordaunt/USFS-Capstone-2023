@@ -1,9 +1,10 @@
 import React from 'react';
-import {Box, Container, Tabs, Tab, Typography, Menu, MenuItem, Popover, List, ListItem, ListItemText, ListItemButton, styled} from '@mui/material';
+import {Box, Container, Tabs, Tab, Typography, Menu, MenuItem, Popover, List, ListItem, ListItemText, ListItemButton, styled, Paper} from '@mui/material';
 import HomeContent from './HomeContent';
 import ElementContent from './ElementContent';
 import AboutContent from './AboutContent';
 import './App.css';
+import usfsLogo from './images/usfs-logo.png'
 
 function App() {
   const [tab, setTab] = React.useState(0);
@@ -48,25 +49,29 @@ function App() {
   }
 
   return (
-    <Container maxWidth='xl'>
-      <Typography variant='h4'>United States Forest Service</Typography>
-      <Typography variant='h6'>National Lichens & Air Quality Database and Clearinghouse</Typography>
-      <Tabs sx={{background: '#95a984'}} value={tab} onChange={handleChange} centered>
-      <Tab label="Home" value={0} onClick={handleClick}/>
-        <Tab label="Tools" value={1} onClick={handleClick}/>
-        <Tab label="Gallery" value={2} onClick={handleClick}/>
-        <Tab label="Reports" value={3} onClick={handleClick}/>
-        <Tab label="Other" value={4} onClick={handleClick}/>
-        <Tab label="Contact" value={5} onClick={handleClick}/>
-        <ToolsMenu open={open} anchorEl={anchorEl} handleClose={handleClose} tab={tab}/>
-        <OtherMenu open={open} anchorEl={anchorEl} handleClose={handleClose} tab={tab}/>
-      </Tabs>
-      <Container maxWidth='lg' sx={{marginY: 5}}>
-        <HomeContent hidden={tab !== 0}/>
-        <ElementContent hidden={tab !== 2}/>
-        <AboutContent hidden={tab !== 3}/>
-      </Container>
-    </Container> 
+    
+      <Box sx={{ bgcolor: '#5b8441' }}>
+        <Tabs sx={{background: '#95a984'}} value={tab} onChange={handleChange} centered>
+        <Tab label="Home" value={0} onClick={handleClick}/>
+          <Tab label="Tools" value={1} onClick={handleClick}/>
+          <Tab label="Gallery" value={2} onClick={handleClick}/>
+          <Tab label="Reports" value={3} onClick={handleClick}/>
+          <Tab label="Other" value={4} onClick={handleClick}/>
+          <Tab label="Contact" value={5} onClick={handleClick}/>
+          <ToolsMenu open={open} anchorEl={anchorEl} handleClose={handleClose} tab={tab}/>
+          <OtherMenu open={open} anchorEl={anchorEl} handleClose={handleClose} tab={tab}/>
+        </Tabs>
+        <img class='logo' src={usfsLogo} alt='logo'/>
+        <Typography variant='h4'>United States Forest Service</Typography>
+        <Typography variant='h6'>National Lichens & Air Quality Database and Clearinghouse</Typography>
+        <Container maxWidth='lg' sx={{marginY: 5}}>
+          <HomeContent hidden={tab !== 0}/>
+          <ElementContent hidden={tab !== 2}/>
+          <AboutContent hidden={tab !== 3}/>
+        </Container>
+        <footer style={{opacity: 0}}>.</footer> {/* this is to get rid of the white footer but nothing should actually showup here */}
+        </Box>
+     
   );
 }
 

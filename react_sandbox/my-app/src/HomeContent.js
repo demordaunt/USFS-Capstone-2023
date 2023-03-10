@@ -5,8 +5,9 @@ import "react-alice-carousel/lib/alice-carousel.css";
 import imageOne from './images/Sticta_limbata.png';
 import imageTwo from './images/Usena_sphacelata.png';
 import lichenland from './images/lichenland.png';
-import lichenpublications from './images/lichenpublications.jpeg'
-import axios from 'axios';
+import lichenpublications from './images/lichenpublications.png';
+import analysisTool from './images/analysisTool.png';
+import './App';
 
 
 
@@ -42,7 +43,7 @@ export default function HomeContent({hidden}) {
                 <img src={imageOne} className="sliderimg"/>
                 <img src={imageTwo} className="sliderimg"/>
             </AliceCarousel>
-            <Card sx={{ minWidth: 275 }} className='welcomeCard'>
+            <Card sx={{ minWidth: 275, backgroundColor: '#e0e0e0',}} className='welcomeCard'>
                 <CardContent>
                     <Typography sx={{ fontSize: 34 }} color="text.secondary" gutterBottom>
                         Welcome
@@ -54,9 +55,9 @@ export default function HomeContent({hidden}) {
                 <CardActions>
                     <Button 
                         size="medium"
-                        variant='outlined'
+                        variant='contained'
                         onClick={() => {
-                            console.log('About US Button Clicked')
+                            console.log("Clicked")
                         }}
                     >
                         About Us
@@ -73,23 +74,57 @@ export default function HomeContent({hidden}) {
 
                     <Card>
                         <CardContent>
-                            <h4><b>Reports and Publications</h4></b>
-                            <img src=lichenpublications style="width:5cm">
+                            <h4><b>Reports and Publications</b></h4>
+                            <img src={lichenpublications} style={{width: '7cm'}} />
                         </CardContent>
+                        <CardActions>
+                            <Button 
+                                size="medium"
+                                variant='contained'
+                                onClick={() => {
+                                    console.log('clicked');
+                                }}
+                                
+                            >
+                                Start Reading
+                            </Button>
+                        </CardActions>
                     </Card>
                     <Card>
                         <CardContent>
-                            <h4><b>Analysis Tools</h4></b>
+                            <h4><b>Analysis Tools</b></h4>
                             <p>to visualize air quality and lichen trends</p>
-                            <img src=lichenpublications style="width:5cm"> // incorrect image 
+                            <img src={analysisTool} style={{width: '7cm'}} /> {/* Change image here */}
                         </CardContent>
+                        <CardActions>
+                            <Button 
+                                size="medium"
+                                variant='contained'
+                                onClick={() => {
+                                    console.log('clicked');
+                                }}
+                            >
+                                Analyze Now
+                            </Button>
+                        </CardActions>
                     </Card>
                     <Card>
                         <CardContent>
-                            <h4><b>Resrources</h4></b>
+                            <h4><b>Resources</b></h4>
                             <p>for more lichen fun!</p>  
-                            <img src=lichenland style="width:5cm">
+                            <img src={lichenland} style={{width: '7cm'}} />
                         </CardContent>
+                        <CardActions>
+                            <Button 
+                                size="medium"
+                                variant='contained'
+                                onClick={() => {
+                                    console.log('clicked');
+                                }}
+                            >
+                                Learn More
+                            </Button>
+                        </CardActions>
                     </Card>
                 </Stack>
             </Box>

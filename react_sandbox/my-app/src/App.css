@@ -11,3 +11,9 @@
     grid-row: 1;
     grid-column: 1;
 }
+.logo {
+    width: 80px;
+    height: 80px;
+    top: 0;
+    left: 0;
+  }
