@@ -51,11 +51,12 @@ export default function HomeContent({hidden}) {
                         color: "#fff",
                         }}
                     >
-                        <h1>Welcome</h1>
-                        <p>{body1}</p>
+                        <Typography sx={{}} variant='h1'>Welcome</Typography>
+                        <Typography sx={{}} variant='subtitle1'>{body1}</Typography>
                         <Button 
                         size="medium"
                         variant='contained'
+                        sx={{marginTop: '12px'}}
                         onClick={() => {
                             console.log("Clicked")
                         }}
@@ -91,7 +92,7 @@ export default function HomeContent({hidden}) {
                     </Button>
                 </CardActions>
             </Card> */}
-            <Box>
+            <Box style={{ width: '100%'}}>
                 <Stack
                     direction="row"
                     divider={<Divider orientation="vertical" flexItem />}
@@ -99,7 +100,8 @@ export default function HomeContent({hidden}) {
                     style={{marginTop: '50px', justifyContent: 'space-around', }}
                 >
 
-                    <Card style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignContent: 'center', backgroundColor: '#fae363'}}>
+                    <Card style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', 
+                        alignContent: 'center', backgroundColor: '#fdfdaf'}}>
                         <CardContent>
                             <Typography sx={{fontWeight: 'bold'}} textAlign='center'>Reports and Publications</Typography>
                             <img src={lichenpublications} style={{width: '7cm', marginTop:'20px'}} />
@@ -117,7 +119,7 @@ export default function HomeContent({hidden}) {
                             </Button>
                         </CardActions   >
                     </Card>
-                    <Card style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', backgroundColor: '#fae363'}}>
+                    <Card style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', backgroundColor: '#fdfdaf'}}>
                         <CardContent>
                             <Typography sx={{fontWeight: 'bold'}} textAlign='center'>Analysis Tools</Typography>
                             <Typography textAlign='center'>to visualize air quality and lichen trends</Typography>
@@ -135,7 +137,7 @@ export default function HomeContent({hidden}) {
                             </Button>
                         </CardActions>
                     </Card>
-                    <Card style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', backgroundColor: '#fae363'}}>
+                    <Card style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', backgroundColor: '#fdfdaf'}}>
                         <CardContent sx={{alignContent: 'center', justifyContent: 'center'}}>
                             <Typography sx={{fontWeight: 'bold'}} textAlign='center'>Resources</Typography>
                             <Typography textAlign='center'>for more lichen fun!</Typography>  
