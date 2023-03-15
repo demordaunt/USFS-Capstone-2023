@@ -2,8 +2,6 @@ import { Box, Grid, Typography, Card, CardActions, CardContent, Button, Paper, S
 import { styled } from '@mui/material/styles';
 import AliceCarousel from 'react-alice-carousel';
 import "react-alice-carousel/lib/alice-carousel.css";
-import imageOne from './images/Sticta_limbata.png';
-import imageTwo from './images/Usena_sphacelata.png';
 import lichenland from './images/lichenland-removedbg.png';
 import lichenpublications from './images/lichenpublications-removedbg.png';
 import analysisTool from './images/analysisTool.png';

@@ -5,6 +5,7 @@ import ElementContent from './ElementContent';
 import AboutContent from './AboutContent';
 import './App.css';
 import usfsLogo from './images/usfs-logo.png'
+import TemplateContent from './template';
 
 function App() {
   const [tab, setTab] = React.useState(0);
@@ -85,6 +86,7 @@ function App() {
           <HomeContent hidden={tab !== 0}/>
           <ElementContent hidden={tab !== 2}/>
           <AboutContent hidden={tab !== 3}/>
+          <TemplateContent hidden={tab !== 4}/>
         </Container>
         <footer style={{opacity: 0}}>.</footer> {/* this is to get rid of the white footer but nothing should actually showup here */}
         </Box>
