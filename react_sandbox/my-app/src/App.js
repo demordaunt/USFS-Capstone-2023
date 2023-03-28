@@ -6,6 +6,7 @@ import AboutContent from './AboutContent';
 import './App.css';
 import usfsLogo from './images/usfs-logo.png'
 import TemplateContent from './template';
+import GalleryContent from './GalleryContent';
 
 function App() {
   const [tab, setTab] = React.useState(0);
@@ -84,7 +85,8 @@ function App() {
         
         <Container maxWidth='lg' sx={{marginY: 5}}>
           <HomeContent hidden={tab !== 0}/>
-          <ElementContent hidden={tab !== 2}/>
+          <GalleryContent hidden={tab !== 2}/>
+          <ElementContent hidden={tab !== 1}/>
           <AboutContent hidden={tab !== 3}/>
           <TemplateContent hidden={tab !== 4}/>
         </Container>
