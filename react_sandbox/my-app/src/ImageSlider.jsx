@@ -17,6 +17,7 @@ const Dot = styled.div`
   opacity: ${(props) => (props.isActive ? 1 : 0.5)};
   margin: 5px;
   transition: 750ms all ease-in-out;
+  padding: 8px;
 `;
 
 const Indicator = ({ currentSlide, amountSlides, nextSlide }) => {
@@ -37,6 +38,7 @@ const Indicator = ({ currentSlide, amountSlides, nextSlide }) => {
 
 const Wrapper = styled.div`
   height: 100vh;
+  width: 98.68%;
   display: flex;
   flex-wrap: nowrap;
   overflow-x: hidden;
@@ -45,7 +47,7 @@ const Wrapper = styled.div`
 
 const Slide = styled.div`
   height: 100%;
-  width: 100vw;
+  width: 100%;
   flex-shrink: 0;
   background-position: center;
   background-size: cover;
