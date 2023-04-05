@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import {Box, Container, Tabs, Tab, Typography, Menu, MenuItem, MenuList, Stack, AppBar, Popper, Paper} from '@mui/material';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import HomeContent from './HomeContent';
 import ElementContent from './ElementContent';
 import AboutContent from './AboutContent';
-import './App.css';
+import './App.css'; 
 import usfsLogo from './images/usfs-logo.png'
 import TemplateContent from './template';
-import GalleryContent from './GalleryContent';
 import GalleryContent from './GalleryContent';
 
 function App() {
@@ -69,6 +69,25 @@ function App() {
     );
   }
 
+  function GalleryMenu({open, anchorEl, handleClose, handleClick, tab}) {
+    return (
+      <Popper
+        anchorEl={anchorEl}
+        open={open && tab === 3}
+        placement={'bottom-start'}
+        // autoFocus={false}
+      >
+        <Paper>
+          <MenuList onMouseLeave={handleClose}>
+            <MenuItem onClick={(event) => handleClick(event, "gallery")}>Photographs</MenuItem>
+            <MenuItem onClick={handleClose}>Illustrations</MenuItem>
+            <MenuItem onClick={handleClose}>Lichen Structures</MenuItem>
+          </MenuList>
+        </Paper>
+      </Popper>
+    );
+  }
+
   return (
   
       <Box onMouseLeave={handleClose} sx={{ bgcolor: '#95a984' }}>
@@ -94,15 +113,17 @@ function App() {
               
             </Stack>
             <Tab label="Home" onMouseEnter={(event) => handleChange(event, 1)} onClick={(event) => handleClick(event, "home")} sx={{fontSize: 18, fontWeight: 'bold'}}/>
-            <Tab label="Tools" onMouseEnter={(event) => handleChange(event, 2)} sx={{fontSize: 18, fontWeight: 'bold'}}/>
-            <Tab label="Gallery" onMouseEnter={(event) => handleChange(event, 3)} onClick={(event) => handleClick(event, "gallery")} sx={{fontSize: 18, fontWeight: 'bold'}}/>
-            <Tab label="Reports" onMouseEnter={(event) => handleChange(event, 4)} sx={{fontSize: 18, fontWeight: 'bold'}}/>
-            <Tab label="Other" onMouseEnter={(event) => handleChange(event, 5)} sx={{fontSize: 18, fontWeight: 'bold'}}/>
+            <Tab label="Tools" icon={<ArrowDropDownIcon fontSize={'medium'}/>} iconPosition="end" onMouseEnter={(event) => handleChange(event, 2)} sx={{fontSize: 18, fontWeight: 'bold'}}/>
+            <Tab label="Gallery" icon={<ArrowDropDownIcon fontSize={'medium'}/>} iconPosition="end" onMouseEnter={(event) => handleChange(event, 3)} sx={{fontSize: 18, fontWeight: 'bold'}}/>
+            <Tab label="Reports" onMouseEnter={(event) => handleChange(event, 4)} onClick={(event) => handleClick(event, "reports")} sx={{fontSize: 18, fontWeight: 'bold'}}/>
+            <Tab label="Other" icon={<ArrowDropDownIcon fontSize={'medium'}/>} iconPosition="end" onMouseEnter={(event) => handleChange(event, 5)} sx={{fontSize: 18, fontWeight: 'bold'}}/>
             <Tab label="Contact" onMouseEnter={(event) => handleChange(event, 6)} onClick={(event) => handleClick(event, "contact")} sx={{fontSize: 18, fontWeight: 'bold'}}/>
             {/* <Tab label="Test" value={"test"} onClick={handleClick} sx={{fontSize: 18, fontWeight: 'bold'}}/> */}
 
             <ToolsMenu open={open} anchorEl={anchorEl} handleClose={handleClose} handleClick={handleClick} tab={tab}/>
             <OtherMenu open={open} anchorEl={anchorEl} handleClose={handleClose} tab={tab}/>
+            <GalleryMenu open={open} anchorEl={anchorEl} handleClose={handleClose} handleClick={handleClick} tab={tab}/>
+
           </Tabs>
         </AppBar>
         <Container maxWidth='lg' sx={{marginY: 5}}>
@@ -110,7 +131,7 @@ function App() {
           <GalleryContent hidden={currPage !== "gallery"}/>
           <ElementContent hidden={currPage !== "elementAnalysis"}/>
           <AboutContent hidden={currPage !== "contact"}/>
-          <TemplateContent hidden={currPage !== 4}/>
+          <TemplateContent hidden={currPage !== "reports"}/>
           {/* <Box hidden={tab !== 5}>Contact content goes here.</Box>
           <Box hidden={tab !== 6}>database queries page</Box> */}
         </Container>
