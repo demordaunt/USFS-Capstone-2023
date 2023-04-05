@@ -7,6 +7,7 @@ import './App.css';
 import usfsLogo from './images/usfs-logo.png'
 import TemplateContent from './template';
 import GalleryContent from './GalleryContent';
+import GalleryContent from './GalleryContent';
 
 function App() {
   const [currPage, setCurrPage] = useState("home");
