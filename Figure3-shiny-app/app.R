@@ -83,6 +83,7 @@ server <- function(input, output){
     } 
   })
   
+  
   choice_vector <- reactive({
     if(input$data == "Lichen"){
       choice_vector = lichen_plot_choices
@@ -107,7 +108,7 @@ server <- function(input, output){
     
     selectInput(inputId = "national_forest", #name of input
                 label = "National Forest:", #label displayed in ui
-                choices = unique(forest_data$area), #calls list of available counties
+                choices = unique(sort(forest_data$area)), #calls list of available counties
                 #selected = unique(data_available)[1]
     )
   })
@@ -117,7 +118,7 @@ server <- function(input, output){
     
     selectInput(inputId = "wilderness", #name of input
                 label = "Wilderness:", #label displayed in ui
-                choices = unique(wilderness_data$wilderns), #calls list of available counties
+                choices = unique(sort(wilderness_data$wilderns)), #calls list of available counties
     )
   })
   
