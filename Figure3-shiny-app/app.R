@@ -78,7 +78,7 @@ server <- function(input, output){
       #mutate(year=make_date(year=year))  
       
     }else if(input$data == "Plot"){
-      data_active = plot_databse %>% 
+      data_active = plot_database %>% 
         rename("reg_id" = nfs_reg)
     } 
   })
