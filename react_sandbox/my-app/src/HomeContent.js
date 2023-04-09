@@ -33,7 +33,9 @@ const Item = styled(Paper)(({ theme }) => ({
   }));
 
 
-export default function HomeContent({hidden}) {
+export default function HomeContent({hidden, onButtonClick}) {
+    // const [currPage, setCurrPage] = useState()
+
     return (
         <Grid hidden={hidden} className="homeGrid" sx={{widows: '100%'}}>
             {/* Thisi is where the image slider is styled to fit screen */}
@@ -55,9 +57,7 @@ export default function HomeContent({hidden}) {
                         size="medium"
                         variant='contained'
                         sx={{marginTop: '12px'}}
-                        onClick={() => {
-                            console.log("Clicked")
-                        }}
+                        onClick={(event) => onButtonClick(event, "contact")}
                     >
                         About Us
                     </Button>
@@ -127,9 +127,9 @@ export default function HomeContent({hidden}) {
                             <Button 
                                 size="medium"
                                 variant='contained'
-                                onClick={() => {
-                                    console.log('clicked');
-                                }}
+                                onClick={(event) => 
+                                    onButtonClick(event, "dbQueries")
+                                }
                             >
                                 Analyze Now
                             </Button>

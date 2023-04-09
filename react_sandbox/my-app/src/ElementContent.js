@@ -46,7 +46,7 @@ export default function ElementContent({hidden}) {
                             <Typography variant='body1'>{body1}</Typography>
                         </Grid>
                         <Grid item xs={3}>
-                            <Box sx={{height: '200px', background: 'black', color: 'white'}}>Image here</Box>
+                            <Box sx={{height: '200px', background: 'black', color: 'white'}}>Image here</Box>   
                         </Grid>
                         <Grid>
                             <Typography variant='h5'>Overview</Typography>
