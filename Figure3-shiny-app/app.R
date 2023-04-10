@@ -10,9 +10,6 @@ googledownload <- function(id) {
   read.csv(sprintf("https://docs.google.com/uc?id=%s&export=download", id), row.names=NULL)
 }
 
-#plot_database <- read.csv("~/Desktop/PWS465/shinyapp2/MegaDbPLOT_2022.10.06v2 minus FIA locale.csv", stringsAsFactors = F)
-#lichen_database <- read.csv("~/Desktop/PWS465/shinyapp2/MegaDbLICHEN_2021.06.03V3.csv", stringsAsFactors = F) 
-#elemental_database <- read.csv("~/Desktop/PWS465/shinyapp2/MegaDbELEMENTAL_2021.05.30.csv", stringsAsFactors = F)
 # data is being pulled from : https://drive.google.com/file/d/1FTF8Qsl6Ix_V4NTLucC7AenTdGab9Ntg/view?usp=share_link
 plot_database <- googledownload('1FTF8Qsl6Ix_V4NTLucC7AenTdGab9Ntg')
 #https://drive.google.com/file/d/1Iy8R6xebI7NE_xLeDC_L7BCyI5tzbSXl/view?usp=share_link
@@ -26,13 +23,7 @@ lichen_database <- rbind(lichen_1, lichen_2)
 elemental_database <- googledownload('1nb1x4Zl35V7m-ToWY1RKzuZKm6rY0uiL')
 
 
-# plot_database <- read.csv("~/Desktop/PWS465/shinyapp2/MegaDbPLOT_2022.10.06v2 minus FIA locale.csv", stringsAsFactors = F)
-# lichen_database <- read.csv("~/Desktop/PWS465/shinyapp2/MegaDbLICHEN_2021.06.03V3.csv", stringsAsFactors = F) 
-# elemental_database <- read.csv("~/Desktop/PWS465/shinyapp2/MegaDbELEMENTAL_2021.05.30.csv", stringsAsFactors = F)
-
-
 wilderness_megadbid <- plot_database %>% select(megadbid, wilderns, area)
-
 
 lichen_database <- left_join(lichen_database, wilderness_megadbid)
 
@@ -65,11 +56,7 @@ ui <- fluidPage(
 )
 
 server <- function(input, output){
-  
-  #   output$data_selector = renderUI({ #creates State select box object called in ui
-  # #default choice (not required)
-  #   })
-  
+   
   data_available <- reactive({
     if(input$data == "Lichen"){
       data_active = lichen_database %>% 
@@ -144,8 +131,6 @@ server <- function(input, output){
           theme(axis.text.x = element_text(angle = 90))+
           labs(x = "Lichen Species", title = paste("Histogram of Lichen Species within", input$wilderness))
         
-        #})
-        #plotOutput("plot1")
         
       }
     }else if(input$data == "Elemental"){
@@ -174,9 +159,6 @@ server <- function(input, output){
       # }
     }
     
-    # ggplot(variable_data, aes_string(x=input$variable1))+
-    #   geom_bar()+
-    #   theme(axis.text.x = element_text(angle = 90))
   })
   
   output$downloadPlot <- downloadHandler(
