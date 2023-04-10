@@ -5,6 +5,7 @@ library(leaflet.extras2)
 library(shinyscreenshot)
 library(htmltools)
 library(htmlwidgets)
+library(rsconnect)
 
 #MAKE SURE YOUR CURRENT WORKING DIRECTORY IS shinyapp (the folder downloaded from github)
 
