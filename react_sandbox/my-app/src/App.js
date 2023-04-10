@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import {Box, Container, Tabs, Tab, Typography, Menu, MenuItem, MenuList, Stack, AppBar, Popper, Paper} from '@mui/material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import './App.css';
 import HomeContent from './HomeContent';
 import ElementContent from './ElementContent';
 import AboutContent from './AboutContent';
-import './App.css'; 
 import usfsLogo from './images/usfs-logo.png'
 import TemplateContent from './template';
 import GalleryContent from './GalleryContent';
+import DBQueriesContent from './DBQueriesContent'
 
 function App() {
   const [currPage, setCurrPage] = useState("home");
@@ -38,11 +39,10 @@ function App() {
         anchorEl={anchorEl}
         open={open && tab === 2}
         placement={'bottom-start'}
-        // autoFocus={false}
         >
         <Paper>
           <MenuList onMouseLeave={handleClose}>
-            <MenuItem onClick={handleClose}>Database Queries</MenuItem>
+            <MenuItem onClick={(event) => handleClick(event, "dbQueries")}>Database Queries</MenuItem>
             <MenuItem onClick={(event) => handleClick(event, "elementAnalysis")}>Element Analysis Thresholds & Sensitivity Ratings</MenuItem>
           </MenuList>
         </Paper>
@@ -56,7 +56,6 @@ function App() {
         anchorEl={anchorEl}
         open={open && tab === 5}
         placement={'bottom-start'}
-        // autoFocus={false}
       >
         <Paper>
           <MenuList onMouseLeave={handleClose}>
@@ -75,7 +74,6 @@ function App() {
         anchorEl={anchorEl}
         open={open && tab === 3}
         placement={'bottom-start'}
-        // autoFocus={false}
       >
         <Paper>
           <MenuList onMouseLeave={handleClose}>
@@ -127,8 +125,9 @@ function App() {
           </Tabs>
         </AppBar>
         <Container maxWidth='lg' sx={{marginY: 5}}>
-          <HomeContent hidden={currPage !== "home"}/>
+          <HomeContent hidden={currPage !== "home"} onButtonClick={handleClick}/>
           <GalleryContent hidden={currPage !== "gallery"}/>
+          <DBQueriesContent hidden={currPage !== "dbQueries"}/>
           <ElementContent hidden={currPage !== "elementAnalysis"}/>
           <AboutContent hidden={currPage !== "contact"}/>
           <TemplateContent hidden={currPage !== "reports"}/>
