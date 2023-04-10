@@ -119,7 +119,7 @@ ui <- fluidPage(
   p(),
   #this puts the range slider on the page and gives it a max and a min
   sliderInput("range", "Year", min(small_sample_data$Year), 2012, value = range(small_sample_data$Year), step = 1, sep = "",
-              width = "60%"),
+              width = "100%"),
   
   ## a download button that pdownloads the map from the page 
   downloadButton("mymapDownload", label = "Download Map"),
