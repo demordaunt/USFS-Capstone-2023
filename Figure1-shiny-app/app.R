@@ -174,18 +174,35 @@ server <- function(input, output, session) {
       hideGroup(c("Barium", "Aluminium", "Cobalt")) 
       
   })
+  # store the current user-created version
+  # of the Leaflet map for download in 
+  # a reactive expression
+  user.created.map <- reactive({
+    
+    # call the foundational Leaflet map
+    output$mymap %>%
+      
+      # store the view based on UI
+      setView( lng = input$map_center$lng
+               ,  lat = input$map_center$lat
+               , zoom = input$map_zoom
+      )
+    
+  }) # end of creating user.created.map()
+  
   
 #   #@Emi's addin for downloading the map -- not sure if it works yet. 
    output$mymapDownload <- downloadHandler(
-       filename = 'USUFMap.png',
-       content = function(file) {
-         #device <- function(..., width, height) {
-         #  grDevices::png(..., width = width, height = height,
-         #                 res = 300, units = "in")
-         #}
-         ggsave(file, plot = "mymap", device = '.png')
-       }
-   )
+    filename = "CustomLeafletmap.pdf"
+    
+    , content = function(file) {
+      mapshot( x = user.created.map
+               , file = file
+               , cliprect = "viewport" # the clipping rectangle matches the height & width from the viewing port
+               , selfcontained = FALSE # when this was not specified, the function for produced a PDF of two pages: one of the leaflet map, the other a blank page.
+      )
+    } # end of content() function
+  ) # end of downloadHandler() function
   
   factop <- function(x) {
     ifelse(is.na(x), 0, 1)
