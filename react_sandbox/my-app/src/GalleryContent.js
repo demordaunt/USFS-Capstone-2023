@@ -30,7 +30,7 @@ export default function GalleryContent({hidden}) {
         setOpen(true);
     }
 
-    const handleClose = () => {
+    const handleClose = () => { 
         setSelectedImg(null);
         setOpen(false);
     }

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import {Box, Typography, Grid, Stack, Paper, Card, CardContent, CardActions, Container} from '@mui/material';
+import {Box, Typography, Grid, Stack, Paper, Card, CardContent, CardActions, Container, Button} from '@mui/material';
 
-export default function DBQueriesContent({hidden}) {
+export default function DBQueriesContent({hidden, onButtonClick}) {
     const lichenPlotBody = `Query the plot database to find out where lichen surveys have been conducted and to get information about physical parameters, climate, vegetation and other environmental conditions measured or modeled for these sites.`
 
     const elementalAnalysisBody = `Query the elemental analysis database to find out what elemental analyses have been conducted in a geographic area of your choice, and what species were measured. Use the draft thresholds page to determine if the values observed were within ranges expected for clean sites.`
@@ -16,22 +16,44 @@ export default function DBQueriesContent({hidden}) {
             <Grid container spacing={3} justifyContent={"space-around"}>
                 <Grid item>
                     <Card raised={true}>
-                        <CardContent>
-                            <img src={'./images/analysisTool.png'}/>
+                        <CardContent sx={{textAlign: "center"}}>
+                            <img src={'./images/analysisTool.png'} width={450} height={250} onClick={(event) => onButtonClick(event, "mapApp")} style={{cursor: 'pointer'}}/>
                             <Typography>
-                                Check out our cool tool!
+                                Explore plot data using our map app!
                             </Typography>
                         </CardContent>
+                        <CardActions sx={{justifyContent: "center"}}>
+                            <Button
+                                size="medium"
+                                variant='contained'
+                                onClick={(event) =>
+                                    onButtonClick(event, "mapApp")
+                                }
+                            >
+                                Plot Now
+                            </Button>
+                        </CardActions>
                     </Card>
                 </Grid>
                 <Grid item>
                     <Card raised={true}>
-                            <CardContent>
-                                <img src={'./images/analysisTool.png'}/>
-                                <Typography>
-                                    Check out our cool tool!
-                                </Typography>
-                            </CardContent>
+                        <CardContent sx={{textAlign: "center"}}>
+                            <img src={'./images/databaseExplorationTool.jpg'} width={450} height={250} onClick={(event) => onButtonClick(event, "explorationTool")} style={{cursor: 'pointer'}}/>
+                            <Typography>
+                                Explore and analyze using our Database Exploration Tool!
+                            </Typography>
+                        </CardContent>
+                        <CardActions sx={{justifyContent: "center"}}>
+                            <Button
+                                size="medium"
+                                variant='contained'
+                                onClick={(event) =>
+                                    onButtonClick(event, "explorationTool")
+                                }
+                            >
+                                Explore Now
+                            </Button>
+                        </CardActions>
                     </Card>
                 </Grid>
             </Grid><br/>

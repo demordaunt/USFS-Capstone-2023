@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {Box, Container, Tabs, Tab, Typography, Menu, MenuItem, MenuList, Stack, AppBar, Popper, Paper} from '@mui/material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import './App.css';
@@ -9,11 +9,17 @@ import usfsLogo from './images/usfs-logo.png'
 import TemplateContent from './template';
 import GalleryContent from './GalleryContent';
 import DBQueriesContent from './DBQueriesContent'
+import MapAppContent from './MapAppContent'
+import ExplorationTool from './ExplorationTool';
 
 function App() {
   const [currPage, setCurrPage] = useState("home");
   const [tab, setTab] = useState(1);
   const [anchorEl, setAnchorEl] = useState(null);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currPage]);
 
   const handleChange = (event, newValue) => {
     setTab(newValue);
@@ -127,10 +133,13 @@ function App() {
         <Container maxWidth='lg' sx={{marginY: 5}}>
           <HomeContent hidden={currPage !== "home"} onButtonClick={handleClick}/>
           <GalleryContent hidden={currPage !== "gallery"}/>
-          <DBQueriesContent hidden={currPage !== "dbQueries"}/>
+          <DBQueriesContent hidden={currPage !== "dbQueries"} onButtonClick={handleClick}/>
           <ElementContent hidden={currPage !== "elementAnalysis"}/>
           <AboutContent hidden={currPage !== "contact"}/>
           <TemplateContent hidden={currPage !== "reports"}/>
+          <MapAppContent hidden={currPage !== "mapApp"} onButtonClick={handleClick}/>
+          <ExplorationTool hidden={currPage !== "explorationTool"} onButtonClick={handleClick}/>
+
           {/* <Box hidden={tab !== 5}>Contact content goes here.</Box>
           <Box hidden={tab !== 6}>database queries page</Box> */}
         </Container>
