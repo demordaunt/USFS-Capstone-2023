@@ -37,7 +37,7 @@ wilderness_megadbid <- plot_database %>% select(megadbid, wilderns, area)
 lichen_database <- left_join(lichen_database, wilderness_megadbid)
 
 element_plot_choices <- c('al_ppm', 'b_ppm', 'ba_ppm', 'be_ppm', 'br_ppm', 'ca_ppm', 'cd_ppm', 'co_ppm', 'cr_ppm', 'cu_ppm', 'f_ppm', 'fe_ppm', 'hg_ppb', 'k_ppm', 'li_ppm', 'mg_ppm', 'mn_ppm', 'mo_ppm', 'na_ppm', 'ni_ppm', 'p_ppm', 'pb_ppm', 'rb_ppm', 'si_ppm', 'sn_ppm', 'sr_ppm', 'ti_ppm', 'v_ppm', 'zn_ppm', 'no3n_ppm')
-plot_plot_choices <- c("Sulfur Airscore", "Nitrogen Airscore")
+plot_plot_choices <- c("Sulfur Airscore")
 lichen_plot_choices <- c("Histogram of Lichen Species")
 
 ui <- fluidPage(
@@ -162,14 +162,16 @@ server <- function(input, output){
           scale_fill_identity()+
           theme(axis.text.x = element_text(angle = 90, size=15),axis.text.y = element_text(size=15),legend.text = element_text(size=15),axis.title = element_text(size =18), title=element_text(size=18, face="bold"))+
           labs(x = "Lichen Sampling Plot", y = "Sulfur Airscore", title = paste("Airscore for Lichen Sampling Plots in", input$wilderness), fill ="Sulfur Airscore" )
-      }else if(input$variable == "Nitrogen Airscore"){
-        ggplot(variable_data, aes_string(x="plot", y='n_airscore'))+
-          geom_col()+
-          scale_fill_manual(values = "black")+
-          theme(axis.text.x = element_text(angle = 90))+
-          labs(x = "Lichen Sampling Plot", y = "Nitrogen Airscore", title = paste("Airscore for each Lichen Sampling Plot in", input$wilderness))
-        
       }
+      # Do not delete
+      # else if(input$variable == "Nitrogen Airscore"){
+      #   ggplot(variable_data, aes_string(x="plot", y='n_airscore'))+
+      #     geom_col()+
+      #     scale_fill_manual(values = "black")+
+      #     theme(axis.text.x = element_text(angle = 90))+
+      #     labs(x = "Lichen Sampling Plot", y = "Nitrogen Airscore", title = paste("Airscore for each Lichen Sampling Plot in", input$wilderness))
+      #   
+      # }
     }
     
     # ggplot(variable_data, aes_string(x=input$variable1))+
