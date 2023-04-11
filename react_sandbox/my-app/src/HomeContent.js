@@ -109,9 +109,8 @@ export default function HomeContent({hidden, onButtonClick}) {
                                 size="medium"
                                 variant='contained'
                                 onClick={() => {
-                                    console.log('clicked');
+                                    window.location.href = 'https://gis.nacse.org/lichenair/index.php?page=reports';
                                 }}
-                                
                             >
                                 Start Reading
                             </Button>
@@ -146,7 +145,7 @@ export default function HomeContent({hidden, onButtonClick}) {
                                 size="medium"
                                 variant='contained'
                                 onClick={() => {
-                                    console.log('clicked');
+                                    window.location.href = 'https://gis.nacse.org/lichenland/LichenLite/index.php';
                                 }}
                             >
                                 Learn More

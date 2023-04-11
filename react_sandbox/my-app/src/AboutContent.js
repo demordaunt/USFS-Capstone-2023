@@ -1,4 +1,7 @@
 import {Box, Grid, Typography, Link} from '@mui/material';
+import Caloplaca_trachyphylla1 from './lichenPhotographs/Caloplaca_trachyphylla1.jpg';
+import Bunodophoron_melanocarpum2 from './lichenPhotographs/Bunodophoron_melanocarpum2.jpg';
+
 
 const body2 = 'The FS has been collecting lichen data since the 1970s, with nationwide emphasis beginning in 1993. Since 1993, the National Forest System (NFS) and the Forest Inventory and Analysis Program (FIA) have collected lichen data on forestland. This database unites data collected by the USFS as well as partnering agencies and researchers, including data on both community composition and elemental analysis of lichen tissue. As of November 13, 2017, the database houses 171,489 lichen records and 15,383 lichen tissue samples collected on 10,623 plots and is usually updated annually to include new data and add new functionality. Most data focus on macrolichen (non-crustose) epiphytes in forest habitats although some data on ground, rock, and crustose lichens are available.';
 
@@ -17,26 +20,26 @@ const imagesFeature = 'Get a drawing or photograph of a lichen, submit your own 
 export default function HomeContent({hidden}) {
     return (
         <Box hidden={hidden}>
-            <Grid container direction='column' spacing={2}>
+            <Grid container direction='column' spacing={5}>
                 <Grid item>
                     <Grid container spacing={2}>
-                        <Grid item xs={3}>
-                            <Box sx={{height: '200px', background: 'black', color: 'white'}}>Image here</Box>
+                        <Grid item xs={4}>
+                            <Box sx={{height: '200px'}}><img src={Bunodophoron_melanocarpum2} width={'auto'} height={'250px'}/></Box>
                         </Grid>
-                        <Grid item xs={9}>
+                        <Grid item xs={8}>
                             <Typography variant='h5'>Overview</Typography>
                             <Typography variant='body1'>{body2}</Typography>
                         </Grid>
                     </Grid>
                 </Grid>
                 <Grid item>
-                    <Grid container spacing={2}>
-                        <Grid item xs={9}>
+                    <Grid container spacing={2} alignItems={'center'}>
+                        <Grid item xs={8}>
                             <Typography variant='h5'>Contributors</Typography>
                             <Typography variant='body1'>{body3}</Typography>
                         </Grid>
-                        <Grid item xs={3}>
-                            <Box sx={{height: '200px', background: 'black', color: 'white'}}>Image here</Box>
+                        <Grid item xs={4} >
+                            <Box sx={{height: '200px'}}><img src={Caloplaca_trachyphylla1} width={'auto'} height={'250px'}/></Box>
                         </Grid>
                     </Grid>
                 </Grid>

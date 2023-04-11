@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Box, ImageList, ImageListItem, Modal} from '@mui/material'
 
-const images = [];
+const structures = [];
 const style = {
     position: 'absolute',
     top: '50%',
@@ -14,10 +14,10 @@ const style = {
   };
 
 function importAll(r) {
-  r.keys().forEach((key) => images.push(key));
+  r.keys().forEach((key) => structures.push(key));
 }
 
-importAll(require.context('./lichenPhotographs', false, /\.(png|jpe?g|svg)$/));
+importAll(require.context('./lichenStructures', false, /\.(png|jpe?g|svg|gif)$/));
 
 export default function GalleryContent({hidden}) {
     const [open, setOpen] = useState(false);
@@ -45,11 +45,12 @@ export default function GalleryContent({hidden}) {
 
         <Box hidden={hidden}>
             <ImageList variant="masonry" cols={3} gap={15}>
-                {images.map((image) => (
+                {structures.map((image) => (
                     <ImageListItem key={image} onClick={() => handleOpen(image)}>
                         <img
-                            src={`./lichenPhotographs/${image}`}
-                            alt={`./lichenPhotographs/${image}`}
+                            src={`./lichenStructures/${image}`}
+                            alt={`./lichenStructures/${image}`}
+                            border={'1px'}
                             loading="lazy"
                         />
                     </ImageListItem>
@@ -72,7 +73,7 @@ export default function GalleryContent({hidden}) {
                     overflow: 'auto',
                 }}>
                     <img
-                        src={`./lichenPhotographs/${selectedImg.src}`}
+                        src={`./lichenStructures/${selectedImg.src}`}
                         onLoad={handleImageLoad}
                         style={{
                             maxWidth: "100%",
