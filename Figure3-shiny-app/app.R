@@ -10,9 +10,6 @@ googledownload <- function(id) {
   read.csv(sprintf("https://docs.google.com/uc?id=%s&export=download", id), row.names=NULL)
 }
 
-#plot_database <- read.csv("~/Desktop/PWS465/shinyapp2/MegaDbPLOT_2022.10.06v2 minus FIA locale.csv", stringsAsFactors = F)
-#lichen_database <- read.csv("~/Desktop/PWS465/shinyapp2/MegaDbLICHEN_2021.06.03V3.csv", stringsAsFactors = F) 
-#elemental_database <- read.csv("~/Desktop/PWS465/shinyapp2/MegaDbELEMENTAL_2021.05.30.csv", stringsAsFactors = F)
 # data is being pulled from : https://drive.google.com/file/d/1FTF8Qsl6Ix_V4NTLucC7AenTdGab9Ntg/view?usp=share_link
 plot_database <- googledownload('1FTF8Qsl6Ix_V4NTLucC7AenTdGab9Ntg')
 #https://drive.google.com/file/d/1Iy8R6xebI7NE_xLeDC_L7BCyI5tzbSXl/view?usp=share_link
@@ -26,18 +23,12 @@ lichen_database <- rbind(lichen_1, lichen_2)
 elemental_database <- googledownload('1nb1x4Zl35V7m-ToWY1RKzuZKm6rY0uiL')
 
 
-# plot_database <- read.csv("~/Desktop/PWS465/shinyapp2/MegaDbPLOT_2022.10.06v2 minus FIA locale.csv", stringsAsFactors = F)
-# lichen_database <- read.csv("~/Desktop/PWS465/shinyapp2/MegaDbLICHEN_2021.06.03V3.csv", stringsAsFactors = F) 
-# elemental_database <- read.csv("~/Desktop/PWS465/shinyapp2/MegaDbELEMENTAL_2021.05.30.csv", stringsAsFactors = F)
-
-
 wilderness_megadbid <- plot_database %>% select(megadbid, wilderns, area)
-
 
 lichen_database <- left_join(lichen_database, wilderness_megadbid)
 
 element_plot_choices <- c('al_ppm', 'b_ppm', 'ba_ppm', 'be_ppm', 'br_ppm', 'ca_ppm', 'cd_ppm', 'co_ppm', 'cr_ppm', 'cu_ppm', 'f_ppm', 'fe_ppm', 'hg_ppb', 'k_ppm', 'li_ppm', 'mg_ppm', 'mn_ppm', 'mo_ppm', 'na_ppm', 'ni_ppm', 'p_ppm', 'pb_ppm', 'rb_ppm', 'si_ppm', 'sn_ppm', 'sr_ppm', 'ti_ppm', 'v_ppm', 'zn_ppm', 'no3n_ppm')
-plot_plot_choices <- c("Sulfur Airscore", "Nitrogen Airscore")
+plot_plot_choices <- c("Sulfur Airscore")
 lichen_plot_choices <- c("Histogram of Lichen Species")
 
 ui <- fluidPage(
@@ -65,11 +56,7 @@ ui <- fluidPage(
 )
 
 server <- function(input, output){
-  
-  #   output$data_selector = renderUI({ #creates State select box object called in ui
-  # #default choice (not required)
-  #   })
-  
+   
   data_available <- reactive({
     if(input$data == "Lichen"){
       data_active = lichen_database %>% 
@@ -144,8 +131,6 @@ server <- function(input, output){
           theme(axis.text.x = element_text(angle = 90))+
           labs(x = "Lichen Species", title = paste("Histogram of Lichen Species within", input$wilderness))
         
-        #})
-        #plotOutput("plot1")
         
       }
     }else if(input$data == "Elemental"){
@@ -162,19 +147,18 @@ server <- function(input, output){
           scale_fill_identity()+
           theme(axis.text.x = element_text(angle = 90, size=15),axis.text.y = element_text(size=15),legend.text = element_text(size=15),axis.title = element_text(size =18), title=element_text(size=18, face="bold"))+
           labs(x = "Lichen Sampling Plot", y = "Sulfur Airscore", title = paste("Airscore for Lichen Sampling Plots in", input$wilderness), fill ="Sulfur Airscore" )
-      }else if(input$variable == "Nitrogen Airscore"){
-        ggplot(variable_data, aes_string(x="plot", y='n_airscore'))+
-          geom_col()+
-          scale_fill_manual(values = "black")+
-          theme(axis.text.x = element_text(angle = 90))+
-          labs(x = "Lichen Sampling Plot", y = "Nitrogen Airscore", title = paste("Airscore for each Lichen Sampling Plot in", input$wilderness))
-        
       }
+      # Do not delete
+      # else if(input$variable == "Nitrogen Airscore"){
+      #   ggplot(variable_data, aes_string(x="plot", y='n_airscore'))+
+      #     geom_col()+
+      #     scale_fill_manual(values = "black")+
+      #     theme(axis.text.x = element_text(angle = 90))+
+      #     labs(x = "Lichen Sampling Plot", y = "Nitrogen Airscore", title = paste("Airscore for each Lichen Sampling Plot in", input$wilderness))
+      #   
+      # }
     }
     
-    # ggplot(variable_data, aes_string(x=input$variable1))+
-    #   geom_bar()+
-    #   theme(axis.text.x = element_text(angle = 90))
   })
   
   output$downloadPlot <- downloadHandler(

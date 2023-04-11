@@ -18,11 +18,7 @@ plot <- googledownload('1FTF8Qsl6Ix_V4NTLucC7AenTdGab9Ntg')
 # data is being pulled from : https://drive.google.com/file/d/1Iy8R6xebI7NE_xLeDC_L7BCyI5tzbSXl/view?usp=share_link
 lichen_1 <-googledownload('1Iy8R6xebI7NE_xLeDC_L7BCyI5tzbSXl')
 
-#https://drive.google.com/file/d/1-yLi0zqVihX25FjiErTJE_CMkjQnkV_j/view?usp=share_link
-#https://drive.google.com/file/d/1KfW2aSOggASVbaUKXDJbAM7QqDR3R6OT/view?usp=share_link
-
 # data is being pulled from : https://drive.google.com/file/d/1KfW2aSOggASVbaUKXDJbAM7QqDR3R6OT/view?usp=share_link
-
 lichen_2 <-googledownload('1KfW2aSOggASVbaUKXDJbAM7QqDR3R6OT') 
 lichen_2 = lichen_2 %>% select(-row.names)
 lichen <- rbind(lichen_1, lichen_2)
@@ -44,9 +40,6 @@ lichen_species_data <- lichen %>%
   select(c("megadbid", "scinamepkt")) %>% 
   distinct(megadbid, .keep_all = TRUE)
 
-#Combine full_dataset with lichen_species_data.   LOOK AT LINES 79 & 80
-#combine_dataset <- 
-
 data_points <- long_lat %>%
   select(c("latusedd", "longusedd", "year", "megadbid"))%>%
   na.omit()
@@ -64,7 +57,6 @@ unique_longandlat$Lat<- as.numeric(unique_longandlat$Lat)
 unique_longandlat$Long <- as.numeric(unique_longandlat$Long)
 unique_longandlat$Year <- as.numeric(unique_longandlat$Year)
 
-#elemental_data <- read.csv("MegaDbELEMENTAL_2021.05.30.csv", stringsAsFactors = F) %>%
 elemental_data <- elemental %>%
   select(c("ba_ppm", "al_ppm", "co_ppm", "megadbid"))
 
@@ -114,24 +106,6 @@ ba_ppm_color <- colorFactor(palette = "Oranges", small_sample_data$ba_ppm, level
 co_ppm_color <- colorFactor(palette = "Oranges", small_sample_data$co_ppm, levels=order, na.color = NA)
 al_ppm_color <- colorFactor(palette = "Oranges", small_sample_data$al_ppm, levels=order, na.color = NA)
 
-#Emma's original. numerical scale 
-# elemental_data$ba_ppm <- as.integer(elemental_data$ba_ppm)
-# elemental_data$al_ppm <- as.integer(elemental_data$al_ppm)
-# elemental_data$co_ppm <- as.integer(elemental_data$co_ppm)
-# elemental_data$megadbid <- as.character(elemental_data$megadbid)
-# 
-# plot_elemental_data <- left_join(unique_longandlat, elemental_data, by = "megadbid")
-# 
-# small_sample_data <- head(plot_elemental_data, 1000)
-# class(small_sample_data$Year)
-# small_sample_data$Year <- as.numeric(small_sample_data$Year)
-# class(small_sample_data)
-# pal <- colorNumeric(c("green", "yellow","red"), 1:10 )
-# ba_ppm_color <- colorBin(palette = pal(c(1:10)), small_sample_data$ba_ppm, 10)
-# co_ppm_color <- colorBin(palette = pal(c(1:10)), small_sample_data$co_ppm, 10)
-# al_ppm_color <- colorBin(palette = pal(c(1:10)), small_sample_data$al_ppm, 10)
-
-
 # this controls the front end of the app - how you would add new elements
 ui <- fluidPage(
   
@@ -145,13 +119,11 @@ ui <- fluidPage(
   p(),
   #this puts the range slider on the page and gives it a max and a min
   sliderInput("range", "Year", min(small_sample_data$Year), 2012, value = range(small_sample_data$Year), step = 1, sep = "",
-              width = "60%"),
+              width = "100%"),
   
   ## a download button that pdownloads the map from the page 
   downloadButton("mymapDownload", label = "Download Map"),
-  
-  ## a download button that generates the report that made the map
-  downloadButton("report", "Generate Report")
+ 
 )
 
 
@@ -202,18 +174,35 @@ server <- function(input, output, session) {
       hideGroup(c("Barium", "Aluminium", "Cobalt")) 
       
   })
+  # store the current user-created version
+  # of the Leaflet map for download in 
+  # a reactive expression
+  user.created.map <- reactive({
+    
+    # call the foundational Leaflet map
+    output$mymap %>%
+      
+      # store the view based on UI
+      setView( lng = input$map_center$lng
+               ,  lat = input$map_center$lat
+               , zoom = input$map_zoom
+      )
+    
+  }) # end of creating user.created.map()
+  
   
 #   #@Emi's addin for downloading the map -- not sure if it works yet. 
-#   output$mymapDownload <- downloadHandler(
-#       filename = 'USUFMap.png',
-#       content = function(file) {
-#         #device <- function(..., width, height) {
-#         #  grDevices::png(..., width = width, height = height,
-#         #                 res = 300, units = "in")
-#         #}
-#         ggsave(file, plot = "mymap", device = '.png')
-#       }
-#   )
+   output$mymapDownload <- downloadHandler(
+    filename = "CustomLeafletmap.pdf"
+    
+    , content = function(file) {
+      mapshot( x = user.created.map
+               , file = file
+               , cliprect = "viewport" # the clipping rectangle matches the height & width from the viewing port
+               , selfcontained = FALSE # when this was not specified, the function for produced a PDF of two pages: one of the leaflet map, the other a blank page.
+      )
+    } # end of content() function
+  ) # end of downloadHandler() function
   
   factop <- function(x) {
     ifelse(is.na(x), 0, 1)
@@ -221,30 +210,7 @@ server <- function(input, output, session) {
   circleMarkerOutline <- function(x)  {
     ifelse(is.na(x), F,"black")
   }
-  
-#   #@Emi's addin for downloading the report --- not tested to work 
-#   output$report <- downloadHandler(
-#       # For PDF output, change this to "report.pdf"
-#       filename = "report.html",
-#       content = function(file) {
-#         # Copy the report file to a temporary directory before processing it, in
-#         # case we don't have write permissions to the current working dir (which
-#         # can happen when deployed).
-#         tempReport <- file.path(tempdir(), "report.Rmd")
-#         file.copy("report.Rmd", tempReport, overwrite = TRUE)
-
-#         # Set up parameters to pass to Rmd document
-#         params <- list(n = input$slider)
-
-#         # Knit the document, passing in the `params` list, and eval it in a
-#         # child of the global environment (this isolates the code in the document
-#         # from the code in this app).
-#         rmarkdown::render(tempReport, output_file = file,
-#           params = params,
-#           envir = new.env(parent = globalenv())
-#         )
-#       }
-#     )
+ 
   
   #whenever the user selects a different year range the points and circles are updated
   observe({
