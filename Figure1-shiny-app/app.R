@@ -68,7 +68,7 @@ elemental_data$megadbid <- as.character(elemental_data$megadbid)
 ## @Emi Categorized ppm 
 ## @ToDO: updates for thresholds need to be updated. 
 ## could be good to make this into a function later. 
-order = c("Safe", "Moderate", "Toxic", "Lethal")
+order = c("Background", "Normal", "Elevated", "Highly Elevated")
 elemental_data$ba_ppm_categorized <- cut(elemental_data$ba_ppm,
                    breaks=c(-Inf, 5.0, 14.9, 23.2, Inf),
                    labels=order)
