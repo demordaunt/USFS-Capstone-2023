@@ -1,0 +1,17 @@
+{
+  "providers": [
+    "awscloudformation"
+  ],
+  "projectName": "usfswebapp",
+  "version": "3.1",
+  "frontend": "javascript",
+  "javascript": {
+    "framework": "react",
+    "config": {
+      "SourceDir": "~/Developer/USFS-Capstone-2023/react_sandbox/",
+      "DistributionDir": "~/Developer/USFS-Capstone-2023/",
+      "BuildCommand": "",
+      "StartCommand": "npm run-script start"
+    }
+  }
+}
